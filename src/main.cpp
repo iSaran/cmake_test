@@ -6,5 +6,5 @@ using namespace std;
 int main()
 {
   BHand bh;
-  cout << "Jason" << endl;
+  cout << "BHand object created." << endl;
 }
