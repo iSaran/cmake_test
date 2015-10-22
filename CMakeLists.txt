@@ -17,4 +17,7 @@ add_executable(cmake_test
 
 target_link_libraries(cmake_test 
   BHand
+  pcan
+  ctb-0.14
+  PocoFoundation
 )
