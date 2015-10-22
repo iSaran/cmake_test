@@ -1,6 +1,5 @@
 #include <iostream>
 #include "BHand.h"
-#include "BHandAppHelper.h"
 using namespace std;
 
 int main()
