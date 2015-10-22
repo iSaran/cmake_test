@@ -1,22 +1,33 @@
 cmake_minimum_required (VERSION 2.8)
 project(cmake_test)
 
-add_definitions( -DLINUX )
+add_definitions(-DLINUX)
+
+
+## Change these paths if you have installed your software elsewhere
+set(BHAND_INCLUDE_DIR $ENV{HOME}/code/BHand/API)
+set(BHAND_LIBS_DIR $ENV{HOME}/code/BHand/API/lib)
+
+
+
+## Find external libraries
+find_library(
+  BHAND_LIB BHand PATHS ${BHAND_LIBS_DIR}
+)
 
 include_directories(
-  $ENV{BHAND_INCLUDE_DIR}
+  ${BHAND_INCLUDE_DIR}
 )
 
-link_directories(
-  $ENV{HOME}/BHand/API/lib
-)
 
-add_executable(cmake_test 
+add_executable(cmake_test
   src/main.cpp
 )
 
-target_link_libraries(cmake_test 
-  BHand
+message(STATUS ${BHAND_LIB})
+
+target_link_libraries( cmake_test
+  ${BHAND_LIB}
   pcan
   ctb-0.14
   PocoFoundation
