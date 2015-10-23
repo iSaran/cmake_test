@@ -5,8 +5,8 @@ add_definitions(-DLINUX)
 
 
 ## Change these paths if you have installed your software elsewhere
-set(BHAND_INCLUDE_DIR $ENV{HOME}/code/BHand/API)
-set(BHAND_LIBS_DIR $ENV{HOME}/code/BHand/API/lib)
+set(BHAND_INCLUDE_DIR $ENV{HOME}/BHand/API)
+set(BHAND_LIBS_DIR $ENV{HOME}/BHand/API/lib)
 
 
 
