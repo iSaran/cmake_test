@@ -18,15 +18,15 @@ include_directories(
 
 foreach(exe super rt)
 
-  add_executable( exe
-    src/exe.cpp
+  add_executable( ${exe}
+    src/${exe}.cpp
   )
 
-  target_link_libraries( exe
+  target_link_libraries( ${exe}
     ${BHAND_LIB}
     pcan
     ctb-0.14
     PocoFoundation
   )
 
-endforeach(exe)
+endforeach(${exe})
