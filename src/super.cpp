@@ -115,48 +115,6 @@ int ExecuteHandover()
 
   SimpleGrasp();
 
-  bh.Set("1", "M", 100000);
-
-  if (result = bh.Close( "S" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
-  if (result = bh.Close( "1" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
-  if (result = bh.Close( "3" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
-  if (result = bh.Close( "2" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
-  if (result = bh.Open( "2" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
-  if (result = bh.Open( "3" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
-  if (result = bh.Open( "1" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
-  if (result = bh.StopMotor( "" ))
-    Error();
-  if (UnbufferedGetChar() != EOF)
-    return 1;
-
   return 0;
 }
 
