@@ -16,8 +16,6 @@ include_directories(
   ${BHAND_INCLUDE_DIR}
 )
 
-message(STATUS ${BHAND_LIB})
-
 foreach(exe super rt)
 
   add_executable( exe
