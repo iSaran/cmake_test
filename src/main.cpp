@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BHand.h"
+#include "BHandAppHelper.h"
 using namespace std;
 
 BHand bh;
@@ -39,7 +40,8 @@ void Initialize()
   //printf("\nuse280Config = %d\n", use280Config);
   //if (result = bh.InitSoftware(com_port, THREAD_PRIORITY_TIME_CRITICAL))
   //  Error();
-
+  if (result = handInitWithMenu(&bh))
+    Error();
   printf("Initialization...");
   if (result = bh.InitHand(""))
     Error();
@@ -111,6 +113,7 @@ int main()
   printf("-- [BHand] Executing - ");
   //Execute();
   bh.Set("1", "M", 100000);
+  Execute();
   printf("-- [BHand] Done\n");
 
   /* Turn off unbuffered input */
