@@ -14,7 +14,6 @@ void Error()
   exit(0);
 }
 
-
 // get the difference in time between two timevals (difference in ms)
 double diffclock(timeval* currentTime, timeval* startTime)
 {
@@ -28,7 +27,6 @@ double diffclock(timeval* currentTime, timeval* startTime)
 void Initialize()
 {
   // Set hardware description before initialization
-  //int hwIndex = BHandHardware::getBHandHardwareIndex("BH8-262");
   int hwIndex = BHandHardware::getBHandHardwareIndex("BH8-280");
   if (hwIndex < 0)
   {
@@ -37,9 +35,7 @@ void Initialize()
   }
   bh.setHardwareDesc(hwIndex);
   bool use280Config = (strcmp(bh.getHardwareDesc()->getModelNumber(), "BH8-280") == 0);
-  //printf("\nuse280Config = %d\n", use280Config);
-  //if (result = bh.InitSoftware(com_port, THREAD_PRIORITY_TIME_CRITICAL))
-  //  Error();
+  
   if (result = handInitWithMenu(&bh))
     Error();
   printf("Initialization...");
@@ -97,10 +93,6 @@ int Execute()
   return 0;
 }
 
-
-
-
-
 int main()
 {
   setvbuf(stdout, 0, _IONBF, 0);
@@ -108,12 +100,11 @@ int main()
   /* Turn on unbuffered input */
   UnbufferedInputStart();
 
-  printf("-- [BHand] Initializing Software...");
+  printf("-- [BHand] Initializing Software...\n");
   Initialize();
   printf("-- [BHand] Executing - ");
   //Execute();
   bh.Set("1", "M", 100000);
-  Execute();
   printf("-- [BHand] Done\n");
 
   /* Turn off unbuffered input */
