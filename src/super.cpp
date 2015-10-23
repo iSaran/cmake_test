@@ -7,6 +7,8 @@ BHand bh;
 char   buf[100];     // Buffer for reading back hand parameters
 int    value;        // Some commands use an int* instead of
 int    result;       // Return value (error) of all BHand calls
+const char* finger[5]={"1", "2", "3", "S", "G"};
+
 
 void Error()
 {
@@ -46,7 +48,7 @@ void Initialize()
 }
 
 
-void doneMoving(char motor)
+bool doneMoving(const char* motor)
 {
   int mode, hold;
   bh.Get(motor, "MODE", &mode);
@@ -70,7 +72,7 @@ cout << "--- [BHand] Simple Grasp started..." << endl;
  
   bh.Set("G", "V", 20);
   bh.Set("S", "V", 0);
-  bh.Set("G", "TSTOP", "0");
+  bh.Set("G", "TSTOP", 0);
   bh.Set("G", "MODE", 4);
   
 /** Start grasping. When every fingers feels the object stop and hold the grasp */
@@ -82,11 +84,11 @@ cout << "--- [BHand] Simple Grasp started..." << endl;
     bh.Get("G", "P", pos_cur);
     bh.Get("G", "SG", sg_cur);
     
-    for (int finger=1; finger<=3; finger++) {
-      if (sg_cur[finger-1] - sg[finger-1] > 400 && pos_cur[finger-1] > 80000) 
+    for (int motor=1; motor<=3; motor++) {
+      if (sg_cur[motor-1] - sg[motor-1] > 400 && pos_cur[motor-1] > 80000) 
       {
-        bh.Set((char)finger, "MODE", 0);
-        flag[finger-1] = false;
+        bh.Set(finger[motor-1], "MODE", 0);
+        flag[motor-1] = false;
       }
       
     }
@@ -95,7 +97,6 @@ cout << "--- [BHand] Simple Grasp started..." << endl;
     if (doneMoving("1") && doneMoving("2") && doneMoving("3")) counter++;
 
     if (counter > 1000) {
-      ROS_INFO("[BHand Server] Simple grasp: I didn't feel forces, but I terminated due to abscence of movement");
       break;
     }
   }
